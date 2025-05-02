@@ -1,0 +1,21 @@
+{
+  "name": "nirsine_reverse_proxy",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "type": "module",
+  "devDependencies": {},
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "http-proxy": "^1.18.1",
+    "https": "^1.0.0",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "dev": "node --trace-warnings src/main.js",
+    "prod": "pm2 start /var/nodejs/nirsine_reverse_proxy/src/main.js --name nirsine_reverse_proxy_server"
+  },
+  "author": "Harry_Nirsine",
+  "license": "MIT",
+  "description": "An extremely simple and minimalistic reverse proxy server — so intuitive that even a kindergarten kid could use it."
+}
