@@ -3,6 +3,7 @@ import util from 'util';
 import variables from './variables.js'
 
 export default {
+	logPathName: "/kindergarten-proxy-server-log",
 	debugLogDirFileName: "",
 
 	//================================================================================= logging
@@ -39,9 +40,8 @@ export default {
 
 	    	if (!this.debugLogDirFileName)
 	    	{
-	    		let logPathName = "/log";
 	    		let logFileName = this.toDateTimeFileName(new Date()) + ".txt";
-	    		this.debugLogDirFileName = this.prepareDir(logPathName) + "/" + logFileName;
+	    		this.debugLogDirFileName = this.prepareDir(this.logPathName) + "/" + logFileName;
 	    		fs.writeFileSync(this.debugLogDirFileName, logData);
 	    	}
 	    	else fs.appendFileSync(this.debugLogDirFileName, logData);
@@ -51,9 +51,8 @@ export default {
 	    // the file name is always be checked to make sure the date is correct
 	    else if (faultLevel == 2)
 	    {
-			let logPathName = "/log";
 			let logFileName = this.toDateFileName(new Date()) + ".txt";
-	    	let logDirFileName = this.prepareDir(logPathName) + "/" + logFileName;
+	    	let logDirFileName = this.prepareDir(this.logPathName) + "/" + logFileName;
 
 	    	if (!fs.existsSync(logDirFileName)) fs.writeFileSync(logDirFileName, logData);
 	    	else fs.appendFileSync(logDirFileName, logData);

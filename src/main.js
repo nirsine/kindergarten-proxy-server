@@ -58,7 +58,7 @@ export default {
 
 		return this;
 	},
-	start(){
+	async start(){
 		if (variables.env == "prod")
 		{
 		    /**

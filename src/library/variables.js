@@ -1,8 +1,8 @@
 export default {
 	// environment
-	env: config.env,
-	isDebugging: config.isDebugging,
+	env: "dev",
+	isDebugging: true,
 
 	// servers
-	servers: config.servers,
+	servers: [],
 };
