@@ -50,67 +50,78 @@ function respondWs(req, socket, head){
 	});
 }
 
-if (variables.isProduction)
-{
-    /**
-     * done
-     * 
-     * http server
-     * only for redirection
-    */
-    await new Promise((resolve, reject) => {
-        variables.httpServer = http.createServer((req, res) => {
-            let redirectTo = "https://" + req.headers.host + req.url;
-            helper.see("redirecting to " + redirectTo);
+export default {
+	setConfig(config){
+		if (typeof config.env != "undefined") variables.env = config.env;
+		if (typeof config.isDebugging != "undefined") variables.isDebugging = config.isDebugging;
+		if (typeof config.servers != "undefined") variables.servers = config.servers;
 
-			res.writeHead(301, {Location: redirectTo});
-			res.end();
-        }).listen(80, () => {
-			helper.see("proxy server is running on port 80 (for redirection)");
-            resolve();
-        });
-    });
+		return this;
+	},
+	start(){
+		if (variables.env == "prod")
+		{
+		    /**
+		     * done
+		     * 
+		     * http server
+		     * only for redirection
+		    */
+		    await new Promise((resolve, reject) => {
+		        variables.httpServer = http.createServer((req, res) => {
+		            let redirectTo = "https://" + req.headers.host + req.url;
+		            helper.see("redirecting to " + redirectTo);
 
-    /**
-     * done
-     * 
-     * https and wss server
-    */
-    await new Promise((resolve, reject) => {
-        variables.httpsServer = https.createServer({
-    		SNICallback: (servername, callback) => {
-    			var error = null;
-    			var server = helper.getServerByDomain(servername);
-				var ctx = server ? tls.createSecureContext({
-    		        cert: fs.readFileSync(server.sslPath + '/fullchain.pem'),
-    		        key: fs.readFileSync(server.sslPath + '/privkey.pem'),
-    			}) : null;
+					res.writeHead(301, {Location: redirectTo});
+					res.end();
+		        }).listen(80, () => {
+					helper.see("proxy server is running on port 80 (for redirection)");
+		            resolve();
+		        });
+		    });
 
-    			callback(error, ctx);
-    		},
-        }, respondHttp).listen(443, () => {
-        	helper.see("proxy server is running on port 443");
-    		variables.httpsServer.on('upgrade', respondWs);
-    		resolve();
-        });
-    });
-}
-else
-{
-    /**
-     * done
-     * 
-     * http and ws server
-    */
-	await new Promise((resolve, reject) => {
-		variables.httpServer = http.createServer(respondHttp).listen(80, () => {
-			helper.see("proxy server is running on port 80");
-			variables.httpServer.on('upgrade', respondWs);
-			resolve();
-	    });
-	});
-}
+		    /**
+		     * done
+		     * 
+		     * https and wss server
+		    */
+		    await new Promise((resolve, reject) => {
+		        variables.httpsServer = https.createServer({
+		    		SNICallback: (servername, callback) => {
+		    			var error = null;
+		    			var server = helper.getServerByDomain(servername);
+						var ctx = server ? tls.createSecureContext({
+		    		        cert: fs.readFileSync(server.sslPath + '/fullchain.pem'),
+		    		        key: fs.readFileSync(server.sslPath + '/privkey.pem'),
+		    			}) : null;
 
-helper.getJoinedDomains().forEach((server) => {
-	helper.see(server.address + " <- " + server.domains);
-});
+		    			callback(error, ctx);
+		    		},
+		        }, respondHttp).listen(443, () => {
+		        	helper.see("proxy server is running on port 443");
+		    		variables.httpsServer.on('upgrade', respondWs);
+		    		resolve();
+		        });
+		    });
+		}
+		else
+		{
+		    /**
+		     * done
+		     * 
+		     * http and ws server
+		    */
+			await new Promise((resolve, reject) => {
+				variables.httpServer = http.createServer(respondHttp).listen(80, () => {
+					helper.see("proxy server is running on port 80");
+					variables.httpServer.on('upgrade', respondWs);
+					resolve();
+			    });
+			});
+		}
+
+		helper.getJoinedDomains().forEach((server) => {
+			helper.see(server.address + " <- " + server.domains);
+		});
+	},
+};

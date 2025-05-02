@@ -1,5 +1,5 @@
 {
-  "name": "nirsine_reverse_proxy",
+  "name": "kindergarten-proxy-server",
   "version": "1.0.0",
   "main": "src/main.js",
   "type": "module",
@@ -13,9 +13,13 @@
   },
   "scripts": {
     "dev": "node --trace-warnings src/main.js",
-    "prod": "pm2 start /var/nodejs/nirsine_reverse_proxy/src/main.js --name nirsine_reverse_proxy_server"
+    "prod": "pm2 start /var/nodejs/kindergarten-proxy-server/src/main.js --name kindergarten-proxy-server"
   },
   "author": "Harry_Nirsine",
   "license": "MIT",
-  "description": "An extremely simple and minimalistic reverse proxy server — so intuitive that even a kindergarten kid could use it."
+  "description": "An extremely simple and minimalistic reverse proxy server — so intuitive that even a kindergarten kid could use it.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harrynirsine/kindergarten-proxy-server.git"
+  }
 }
