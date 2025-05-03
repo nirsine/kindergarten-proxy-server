@@ -15,6 +15,6 @@
   "description": "An extremely simple and minimalistic reverse proxy server — so intuitive that even a kindergarten kid could use it.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/harrynirsine/kindergarten-proxy-server.git"
+    "url": "git+https://github.com/harry-nirsine/kindergarten-proxy-server.git"
   }
 }

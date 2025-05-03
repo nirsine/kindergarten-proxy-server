@@ -132,4 +132,4 @@ const config = {
 [//]: # (badges)
 
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
-[license-link]: https://github.com/harrynirsine/kindergarten-proxy-server/blob/main/LICENSE
+[license-link]: https://github.com/harry-nirsine/kindergarten-proxy-server/blob/main/LICENSE
