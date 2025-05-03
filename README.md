@@ -15,11 +15,14 @@ An extremely simple and minimalistic reverse proxy server — so intuitive that 
 ## Installation
 
 Install using npm
+
 ```bash
 $ npm i kindergarten-proxy-server
 ```
 
 ## Usage
+
+Use it quickly
 
 ```javascript
 import kps from 'kindergarten-proxy-server'
@@ -39,7 +42,7 @@ const config = {
             domains: [
                 "www.mywebsite2.com",
                 "app.mywebsite2.com",
-                "api.mywebsite2.com",
+                "api.mywebsite2.com"
             ],
             address: "http://127.0.0.1:82",
             sslPath: "/etc/letsencrypt/live/mywebsite2.com"
@@ -67,6 +70,7 @@ const config = {
 ```
 
 `env: "dev"` will open only http server as available protocol
+
 `env: "prod"` will open both http and https server, but **http server is only for redirection to https**, at the end https is the only available protocol, and must define `sslPath`
 
 ### isDebugging
@@ -86,6 +90,7 @@ const config = {
 ```
 
 `isDebugging: true` will print all logs on cmd/shell/bash and also store them under directory `/kindergarten-proxy-server-log/`
+
 `isDebugging: false` will not print anything on cmd/shell/bash and will store only error logs under directory `/kindergarten-proxy-server-log/`
 
 ### servers
@@ -109,7 +114,7 @@ const config = {
             domains: [
                 "www.mywebsite2.com",
                 "app.mywebsite2.com",
-                "api.mywebsite2.com",
+                "api.mywebsite2.com"
             ],
             address: "http://127.0.0.1:82",
             sslPath: "/etc/letsencrypt/live/mywebsite2.com" // needed when env = "prod"
@@ -119,7 +124,9 @@ const config = {
 ```
 
 `domain` is used for defining single domain
+
 `domains` is used for defining multiple domains
+
 `sslPath` is used needed when `env = "prod"`
 
 ## License
