@@ -50,7 +50,7 @@ const config = {
     ]
 }
 
-kps.setConfig(config).start()
+kps.set(config).start()
 ```
 
 ## Configuration
@@ -123,7 +123,7 @@ const config = {
 
 * `domain` is used for defining single domain
 * `domains` is used for defining multiple domains
-* `sslPath` is used needed when `env = "prod"`
+* `sslPath` is used for defining ssl certificate, needed when `env = "prod"`
 
 ## License
 

@@ -51,7 +51,7 @@ function respondWs(req, socket, head){
 }
 
 export default {
-	setConfig(config)
+	set(config)
 	{
 		if (typeof config.env != "undefined") variables.env = config.env;
 		if (typeof config.isDebugging != "undefined") variables.isDebugging = config.isDebugging;
