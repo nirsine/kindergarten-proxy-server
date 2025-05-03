@@ -1,7 +1,7 @@
 {
   "name": "kindergarten-proxy-server",
   "version": "1.0.0",
-  "main": "src/main.min.js",
+  "main": "src/main.js",
   "type": "module",
   "dependencies": {
     "fs": "^0.0.1-security",
