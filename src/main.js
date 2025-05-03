@@ -51,14 +51,16 @@ function respondWs(req, socket, head){
 }
 
 export default {
-	setConfig(config){
+	setConfig(config)
+	{
 		if (typeof config.env != "undefined") variables.env = config.env;
 		if (typeof config.isDebugging != "undefined") variables.isDebugging = config.isDebugging;
 		if (typeof config.servers != "undefined") variables.servers = config.servers;
 
 		return this;
 	},
-	async start(){
+	async start()
+	{
 		if (variables.env == "prod")
 		{
 		    /**

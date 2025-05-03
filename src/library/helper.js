@@ -3,8 +3,7 @@ import util from 'util';
 import variables from './variables.js'
 
 export default {
-	logPathName: "/kindergarten-proxy-server-log",
-	debugLogDirFileName: "",
+	logDirFileName: "",
 
 	//================================================================================= logging
 	log(data1, data2, data3, faultLevel)
@@ -38,13 +37,13 @@ export default {
 				else console.error(data1, data2, data3);
 			}
 
-	    	if (!this.debugLogDirFileName)
+	    	if (!this.logDirFileName)
 	    	{
 	    		let logFileName = this.toDateTimeFileName(new Date()) + ".txt";
-	    		this.debugLogDirFileName = this.prepareDir(this.logPathName) + "/" + logFileName;
-	    		fs.writeFileSync(this.debugLogDirFileName, logData);
+	    		this.logDirFileName = this.prepareDir(variables.logPathName) + "/" + logFileName;
+	    		fs.writeFileSync(this.logDirFileName, logData);
 	    	}
-	    	else fs.appendFileSync(this.debugLogDirFileName, logData);
+	    	else fs.appendFileSync(this.logDirFileName, logData);
 	    }
 
 	    // log error per daily basis
@@ -52,7 +51,7 @@ export default {
 	    else if (faultLevel == 2)
 	    {
 			let logFileName = this.toDateFileName(new Date()) + ".txt";
-	    	let logDirFileName = this.prepareDir(this.logPathName) + "/" + logFileName;
+	    	let logDirFileName = this.prepareDir(variables.logPathName) + "/" + logFileName;
 
 	    	if (!fs.existsSync(logDirFileName)) fs.writeFileSync(logDirFileName, logData);
 	    	else fs.appendFileSync(logDirFileName, logData);
