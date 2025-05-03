@@ -1,6 +1,5 @@
 # kindergarten-proxy-server
 An extremely simple and minimalistic reverse proxy server — so intuitive that even a kindergarten kid could use it.
-[![MIT licensed][license-image]][license-link]
 
 ## What is this?
 
@@ -26,29 +25,29 @@ $ npm i kindergarten-proxy-server
 import kps from 'kindergarten-proxy-server'
 
 const config = {
-	env: "prod",
-	isDebugging: false,
-	servers: [
-		{
-			name: "my_website_1",
-			domain: "mywebsite1.com",
-			address: "http://127.0.0.1:81",
-			sslPath: "/etc/letsencrypt/live/mywebsite1.com"
-		},
-		{
-			name: "my_website_2",
-			domains: [
-				"www.mywebsite2.com",
-				"app.mywebsite2.com",
-				"api.mywebsite2.com",
-			],
-			address: "http://127.0.0.1:82",
-			sslPath: "/etc/letsencrypt/live/mywebsite2.com"
-		}
-	]
-};
+    env: "prod",
+    isDebugging: false,
+    servers: [
+        {
+            name: "my_website_1",
+            domain: "mywebsite1.com",
+            address: "http://127.0.0.1:81",
+            sslPath: "/etc/letsencrypt/live/mywebsite1.com"
+        },
+        {
+            name: "my_website_2",
+            domains: [
+                "www.mywebsite2.com",
+                "app.mywebsite2.com",
+                "api.mywebsite2.com",
+            ],
+            address: "http://127.0.0.1:82",
+            sslPath: "/etc/letsencrypt/live/mywebsite2.com"
+        }
+    ]
+}
 
-kps.setConfig(config).start();
+kps.setConfig(config).start()
 ```
 
 ## Configuration
@@ -57,14 +56,14 @@ kps.setConfig(config).start();
 
 ```javascript
 const config = {
-	// for development, this is default value
-	env: "dev",
+    // for development, this is default value
+    env: "dev",
 
-	// for production
-	env: "prod",
+    // for production
+    env: "prod",
 
-	...
-};
+    ...
+}
 ```
 
 `env: "dev"` will open only http server as available protocol
@@ -74,16 +73,16 @@ const config = {
 
 ```javascript
 const config = {
-	...
+    ...
 
-	// for development, this is default value
-	isDebugging: true,
+    // for development, this is default value
+    isDebugging: true,
 
-	// for production
-	isDebugging: false,
+    // for production
+    isDebugging: false,
 
-	...
-};
+    ...
+}
 ```
 
 `isDebugging: true` will print all logs on cmd/shell/bash and also store them under directory `/kindergarten-proxy-server-log/`
@@ -93,37 +92,41 @@ const config = {
 
 ```javascript
 const config = {
-	...
+    ...
 
-	servers: [
-		// using single domain
-		{
-			name: "my_website_1",
-			domain: "mywebsite1.com",
-			address: "http://127.0.0.1:81",
-			sslPath: "/etc/letsencrypt/live/mywebsite1.com" // needed when env = "prod"
-		},
+    servers: [
+        // using single domain
+        {
+            name: "my_website_1",
+            domain: "mywebsite1.com",
+            address: "http://127.0.0.1:81",
+            sslPath: "/etc/letsencrypt/live/mywebsite1.com" // needed when env = "prod"
+        },
 
-		// using multiple domains
-		{
-			name: "my_website_2",
-			domains: [
-				"www.mywebsite2.com",
-				"app.mywebsite2.com",
-				"api.mywebsite2.com",
-			],
-			address: "http://127.0.0.1:82",
-			sslPath: "/etc/letsencrypt/live/mywebsite2.com" // needed when env = "prod"
-		}
-	]
-};
+        // using multiple domains
+        {
+            name: "my_website_2",
+            domains: [
+                "www.mywebsite2.com",
+                "app.mywebsite2.com",
+                "api.mywebsite2.com",
+            ],
+            address: "http://127.0.0.1:82",
+            sslPath: "/etc/letsencrypt/live/mywebsite2.com" // needed when env = "prod"
+        }
+    ]
+}
 ```
 
 `domain` is used for defining single domain
 `domains` is used for defining multiple domains
 `sslPath` is used needed when `env = "prod"`
 
+## License
+
+[![MIT licensed][license-image]][license-link]
 
 [//]: # (badges)
+
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
-[license-link]: https://github.com/httprb/http/blob/main/LICENSE.txt
+[license-link]: https://github.com/harrynirsine/kindergarten-proxy-server/blob/main/LICENSE
