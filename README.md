@@ -9,8 +9,9 @@ An extremely simple and minimalistic reverse proxy server — so intuitive that 
 
 - 🚀 Ridiculously easy to use
 - ⚡ Minimal dependencies
-- 🔁 Forwards HTTP and WS requests to a target server
-- 🔒 Basic logging
+- 🔁 Forwards HTTP and WS
+- 🔒 SSL certificate
+- 📜 Error logging
 
 ## Installation
 
@@ -59,7 +60,7 @@ kps.set(config).start()
 
 ```javascript
 const config = {
-    // for development, this is default value
+    // for development
     env: "dev",
 
     // for production
@@ -69,8 +70,8 @@ const config = {
 }
 ```
 
-* `env: "dev"` will open only http server as available protocol
-* `env: "prod"` will open both http and https server, but **http server is only for redirection to https**, at the end https is the only available protocol, and must define `sslPath`
+* `env: "dev"` (default) will open only http protocol, https protocol will not be available
+* `env: "prod"` will open both http and https protocols, but **http is only for redirection to https**, at the end https is the only available protocol, hence must also define `sslPath`
 
 ### isDebugging
 
@@ -78,7 +79,7 @@ const config = {
 const config = {
     ...
 
-    // for development, this is default value
+    // for development
     isDebugging: true,
 
     // for production
@@ -88,7 +89,7 @@ const config = {
 }
 ```
 
-* `isDebugging: true` will print all logs on cmd/shell/bash and also store them under directory `/kindergarten-proxy-server-log/`
+* `isDebugging: true` (default) will print all logs on cmd/shell/bash and also store them under directory `/kindergarten-proxy-server-log/`
 * `isDebugging: false` will not print anything on cmd/shell/bash and will store only error logs under directory `/kindergarten-proxy-server-log/`
 
 ### servers
